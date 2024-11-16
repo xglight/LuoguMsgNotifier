@@ -1,3 +1,6 @@
 venv/*
 .idea/*
 cookie.txt
+login.json
+build/
+dist/
