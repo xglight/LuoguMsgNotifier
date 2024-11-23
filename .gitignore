@@ -1,6 +1,7 @@
 venv/*
 .idea/*
 cookie.txt
-login.json
+config.json
 build/
 dist/
+.vscode
