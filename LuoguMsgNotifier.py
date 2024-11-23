@@ -47,7 +47,7 @@ def init():
                 "smtp_user": "",
                 "smtp_password": "",
                 "receiver": "",
-                "title": "Luogu 私信通知",
+                "title": "来自 $user$ 的 Luogu 私信",
                 "content": "$user$: $content$"
             }
         }
