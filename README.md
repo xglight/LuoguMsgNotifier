@@ -46,20 +46,26 @@
 
 即 `config.json` 文件中的 `windows` 字段。
 
-- `enable`：是否启用桌面通知。
+|  字段   |  类型  |                         说明                          |          默认值          |
+| :-----: | :----: | :---------------------------------------------------: | :----------------------: |
+| enable  |  bool  |                   是否启用桌面通知                    |           true           |
+|  title  | string |                       通知标题                        |    "收到新的洛谷私信"    |
+| content | string | 通知内容（`$user$` 为用户名，`$content$` 为私信内容） | "\$user\$： \$content\$" |
 
 ### 邮件通知
 
 即 `config.json` 文件中的 `mail` 字段。
 
-| 字段          | 类型   | 说明               |
-| ------------- | ------ | ------------------ |
-| enable        | bool   | 是否启用邮件通知。 |
-| smtp_server   | string | SMTP服务器地址     |
-| smtp_port     | int    | SMTP服务器端口     |
-| smtp_user     | string | SMTP用户名         |
-| smtp_password | string | SMTP密码           |
-| receiver      | string | 收件人邮箱         |
+|     字段      |  类型  |                         说明                          |            默认值             |
+| :-----------: | :----: | :---------------------------------------------------: | :---------------------------: |
+|    enable     |  bool  |                   是否启用邮件通知                    |             false             |
+|  smtp_server  | string |                    SMTP服务器地址                     |              ""               |
+|   smtp_port   |  int   |                    SMTP服务器端口                     |               0               |
+|   smtp_user   | string |                      SMTP用户名                       |              ""               |
+| smtp_password | string |                       SMTP密码                        |              ""               |
+|   receiver    | string |                      收件人邮箱                       |              ""               |
+|     title     | string |                       通知标题                        | "来自 \$user\$ 的 Luogu 私信" |
+|    content    | string | 通知内容（`$user$` 为用户名，`$content$` 为私信内容） |   "\$user\$： \$content\$"    |
 
 
 ## 手动编译
@@ -83,4 +89,4 @@ pyinstaller LuoguMsgNotifier.spec
 - [ ] 增加登录信息有效性验证。
 - [ ] 添加 `Helper.exe` 作为辅助程序，方便管理。
 - [ ] 增加更多的通知方式，如邮件、微信、QQ 等。
-- [ ] 自定义通知内容。
+- [x] 自定义通知内容。

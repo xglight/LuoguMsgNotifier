@@ -12,11 +12,19 @@ enable_windows_notifier = True
 enable_email_notifier = False
 email_notifier = None
 
+windows_title = "收到新的洛谷私信"
+windows_content = "$user$: $content$"
+
+email_title = "来自 $user$ 的 Luogu 私信"
+email_content = "$user$: $content$"
+
 
 def init():
     global email_notifier
     global enable_email_notifier
     global enable_windows_notifier
+    global windows_title
+    global windows_content
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s - %(levelname)s: %(message)s')
 
@@ -29,14 +37,18 @@ def init():
             },
             "windows": {
                 "enable": "true",
+                "title": "收到新的洛谷私信",
+                "content": "$user$: $content$"
             },
             "email": {
                 "enable": "false",
                 "smtp_server": "",
-                "smtp_port": "",
+                "smtp_port": 0,
                 "smtp_user": "",
                 "smtp_password": "",
-                "receiver": ""
+                "receiver": "",
+                "title": "Luogu 私信通知",
+                "content": "$user$: $content$"
             }
         }
         with open("config.json", "w", encoding="utf-8") as f:
@@ -59,6 +71,8 @@ def init():
                 enable_windows_notifier = False
             else:
                 logging.info("windows通知已开启")
+                windows_title = login_data["windows"].get("title")
+                windows_content = login_data["windows"].get("content")
                 enable_windows_notifier = True
         else:
             enable_windows_notifier = False
@@ -123,12 +137,17 @@ class Windows_Notifier:
         self.content = content
 
     def show(self):
+        global windows_title
+        global windows_content
         button_open = {
             "activationType": "protocol",
             "arguments": f'https://www.luogu.com.cn/chat?uid={self.uid}',
             "content": "查看私信"
         }
-        toast("收到新的洛谷私信", f'{self.name}: {self.content}',
+        _content = windows_content
+        _content.replace("$user$", self.name)
+        _content.replace("$content$", self.content)
+        toast(windows_title, _content,
               duration="short",
               buttons=[button_open, "忽略"],
               audio={"silent": "true"})
@@ -161,6 +180,9 @@ class Listen_Message:
         global enable_windows_notifier
         global enable_email_notifier
 
+        global email_title
+        global email_content
+
         data = json.loads(message)
         if data.get("_ws_type") == "server_broadcast":
             msg = data["message"]
@@ -174,8 +196,15 @@ class Listen_Message:
 
                 if enable_email_notifier:
                     logging.info("邮件通知")
-                    email_notifier.send_email(
-                        f'来自{msg["sender"]["name"]}的 Luogu 私信', msg["content"])
+                    _title = email_title
+                    _content = email_content
+
+                    _title.replace("$user$", msg["sender"]["name"])
+                    _content.replace("$user$", msg["sender"]["name"])
+                    _title.replace("$content$", msg["content"])
+                    _content.replace("$content$", msg["content"])
+
+                    email_notifier.send_email(_title, _content)
 
     def connect(self):
         ws_url = "wss://ws.luogu.com.cn/ws"
