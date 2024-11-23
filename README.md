@@ -22,7 +22,9 @@
 
 ## 使用方法
 
-在 [Releases](https://github.com/xglight/LuoguMsgNotifier/releases) 页面下载最新版本的 `LuoguMsgNotifier.exe` 文件。
+在 [Releases](https://github.com/xglight/LuoguMsgNotifier/releases) 页面下载最新版本的 `LuoguMsgNotifier.zip` 文件。
+
+解压得到 `LuoguMsgNotifier.exe` 文件。
 
 在 `config.json` 文件中填写相关信息，并保存。
 
