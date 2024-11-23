@@ -50,7 +50,7 @@
 | :-----: | :----: | :---------------------------------------------------: | :---------------------: |
 | enable  |  bool  |                   是否启用桌面通知                    |          true           |
 |  title  | string |                       通知标题                        |   "收到新的洛谷私信"    |
-| content | string | 通知内容（`$user$` 为用户名，`$content$` 为私信内容） | "\$user\$: \$content\$" |
+| content | string | 通知内容（`$user$` 为用户名，`$content$` 为私信内容） | "`$user$`: `$content$`" |
 
 ### 邮件通知
 
@@ -64,8 +64,8 @@
 |   smtp_user   | string |                      SMTP用户名                       |              ""               |
 | smtp_password | string |                       SMTP密码                        |              ""               |
 |   receiver    | string |                      收件人邮箱                       |              ""               |
-|     title     | string |                       通知标题                        | "来自 \$user\$ 的 Luogu 私信" |
-|    content    | string | 通知内容（`$user$` 为用户名，`$content$` 为私信内容） |    "\$user\$: \$content\$"    |
+|     title     | string |                       通知标题                        | "来自 `$user$` 的 Luogu 私信" |
+|    content    | string | 通知内容（`$user$` 为用户名，`$content$` 为私信内容） |    "`$user$`: `$content$`"    |
 
 
 ## 手动编译
