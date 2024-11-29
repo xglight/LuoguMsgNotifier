@@ -145,8 +145,8 @@ class Windows_Notifier:
             "content": "查看私信"
         }
         _content = windows_content
-        _content.replace("$user$", self.name)
-        _content.replace("$content$", self.content)
+        _content = _content.replace("$user$", self.name)
+        _content = _content.replace("$content$", self.content)
         toast(windows_title, _content,
               duration="short",
               buttons=[button_open, "忽略"],
@@ -199,10 +199,11 @@ class Listen_Message:
                     _title = email_title
                     _content = email_content
 
-                    _title.replace("$user$", msg["sender"]["name"])
-                    _content.replace("$user$", msg["sender"]["name"])
-                    _title.replace("$content$", msg["content"])
-                    _content.replace("$content$", msg["content"])
+                    _title = _title.replace("$user$", msg["sender"]["name"])
+                    _content = _content.replace(
+                        "$user$", msg["sender"]["name"])
+                    _title = _title.replace("$content$", msg["content"])
+                    _content = _content.replace("$content$", msg["content"])
 
                     email_notifier.send_email(_title, _content)
 

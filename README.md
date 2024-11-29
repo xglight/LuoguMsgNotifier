@@ -40,6 +40,11 @@
 
 即 `config.json` 文件中的 `luogu` 字段。
 
+|    字段     |  类型  |    说明     | 默认值 |
+| :---------: | :----: | :---------: | :----: |
+|    _uid     | string |    _uid     |   ""   |
+| __client_id | string | __client_id |   ""   |
+
 关于 `_uid` 和 `__client_id` 请参考 [https://www.luogu.com/article/x6z3s5ri](https://www.luogu.com/article/x6z3s5ri)。
 
 ### 桌面通知
